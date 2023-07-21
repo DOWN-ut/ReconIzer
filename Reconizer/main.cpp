@@ -9,7 +9,7 @@ using namespace cv;
 
 void mainYahnis(string path)
 {
-    Video test = Video(path + "Data/BALLS.mp4");
+    Video test = Video(path + "/Data/BALLS.mp4");
     test.Display("test");
     cv::waitKey(0);
     cv::destroyAllWindows();
@@ -17,7 +17,7 @@ void mainYahnis(string path)
 
 void mainArthur(string path)
 {
-    Video test = Video( path + "Data/BALLS.mp4");
+    Video test = Video( path + "/Data/BALLS.mp4");
     test.Display("test");
     cv::waitKey(0);
     cv::destroyAllWindows();
