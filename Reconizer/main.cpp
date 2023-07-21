@@ -7,27 +7,25 @@
 
 using namespace cv;
 
-void mainYahnis()
+void mainYahnis(string path)
 {
-    cv::Mat img = cv::imread("D:/Documents/Projets Dev/ReconIzer/Data/abstract-rainbow-colors-background.jpg");
-    namedWindow("First OpenCV Application", WINDOW_AUTOSIZE);
-    cv::imshow("First OpenCV Application", img);
-    cv::moveWindow("First OpenCV Application", 0, 45);
+    Video test = Video(path + "Data/BALLS.mp4");
+    test.Display("test");
     cv::waitKey(0);
     cv::destroyAllWindows();
 }
 
-void mainArthur()
+void mainArthur(string path)
 {
-    Video test = Video("C:/Users/arthu/Desktop/Code/Reconize/ReconIzer/Data/BALLS.mp4");
+    Video test = Video( path + "Data/BALLS.mp4");
     test.Display("test");
     cv::waitKey(0);
     cv::destroyAllWindows();
 }
 
 int main()
-{
-    //mainYahnis();
-    mainArthur();
+{ 
+    mainYahnis("D:/Documents/Projets Dev/ReconIzer");
+    //mainArthur();
     return 0;
 }
