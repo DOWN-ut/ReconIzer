@@ -6,15 +6,16 @@ using namespace std;
 class Frame
 {
 protected:
-	cv::_OutputArray data;
+	cv::Mat data;
 	string name;
 
 public:
-	cv::Mat Image() { data.getMat(); }
+	cv::Mat Image() { return data; }
 
-	void Show() { imshow(name, Image()); }
+	void Show() { cv::imshow(name, Image()); }
 
-	Frame(int frameId, cv::_OutputArray arr);
-	Frame(string name, cv::_OutputArray arr);
+	Frame(){};
+	Frame(int frameId, cv::Mat arr);
+	Frame(string name, cv::Mat arr);
 };
 
