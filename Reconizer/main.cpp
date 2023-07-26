@@ -25,7 +25,7 @@ void mainArthur(string path)
 
 int main()
 { 
-    mainYahnis("D:/Documents/Projets Dev/ReconIzer");
-    //mainArthur();
+    //mainYahnis("D:/Documents/Projets Dev/ReconIzer");
+    mainArthur("C:/Users/arthu/Desktop/Code/Reconize/ReconIzer");
     return 0;
 }
