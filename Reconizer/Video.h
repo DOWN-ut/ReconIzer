@@ -20,6 +20,6 @@ class Video
 		void Display(string windowName);
 		void Open();
 		void Close();
-		const double getFPS() { return this->fps; };
+		const double FPS() { return this->fps; };
 };
 
