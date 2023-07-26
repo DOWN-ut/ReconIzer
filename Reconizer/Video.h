@@ -21,9 +21,15 @@ class Video
 
 	public:
 		Video(string path);
+
 		void Display(string windowName);
+
 		void Open();
 		void Close();
+
 		const double FPS() { return this->fps; };
+		const int Length() { return nbFrames; }
+
+		Frame* Frame(int i) { return frames[i]; }
 };
 

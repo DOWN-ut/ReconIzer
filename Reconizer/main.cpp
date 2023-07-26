@@ -4,13 +4,15 @@
 #include <iostream>
 #include "Video.h"
 #include "Frame.h"
+#include "VideoOperations.h"
 
 using namespace cv;
 
 void mainYahnis(string path)
 {
-    Video test = Video(path + "/Data/BALLS.mp4");
-    test.Display("test");
+    Video* test = new Video(path + "/Data/BALLS.mp4");
+    test->Display("test");
+    VideoOperations::UnitedColor(150, 0, 0, test);
     cv::waitKey(0);
     cv::destroyAllWindows();
 }
