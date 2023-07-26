@@ -19,15 +19,16 @@ void mainYahnis(string path)
 
 void mainArthur(string path)
 {
-    Video test = Video( path + "/Data/BALLS.mp4");
-    test.Display("test");
+    Video* test = new Video(path + "/Data/BALLS.mp4");
+    VideoOperations::UnitedColor(150, 0, 0, test);
+    test->Save(path + "/Data/test.mp4");
     cv::waitKey(0);
     cv::destroyAllWindows();
 }
 
 int main()
 { 
-    mainYahnis("D:/Documents/Projets Dev/ReconIzer");
-    //mainArthur("C:/Users/arthu/Desktop/Code/Reconize/ReconIzer");
+    //mainYahnis("D:/Documents/Projets Dev/ReconIzer");
+    mainArthur("C:/Users/arthu/Desktop/Code/Reconize/ReconIzer");
     return 0;
 }

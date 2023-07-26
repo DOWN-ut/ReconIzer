@@ -19,6 +19,10 @@ class Video
 		string path;
 		double fps;
 
+		int frameWidth;
+		int frameHeight;
+		int fourcc;
+
 	private:
 		void SetupData();
 		void SetupFrames();
@@ -35,6 +39,8 @@ class Video
 		const int Length() { return nbFrames; }
 
 		Frame* GetFrame(int i) { return frames[i]; }
+
+		void Save(string outputPath);
 };
 
 #endif // VIDEO_H

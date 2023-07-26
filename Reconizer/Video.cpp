@@ -15,6 +15,9 @@ void Video::SetupData()
 {
 	this->fps = this->cvVideo->get(cv::CAP_PROP_FPS);
 	this->nbFrames = this->cvVideo->get(cv::CAP_PROP_FRAME_COUNT);
+	this->frameWidth = this->cvVideo->get(cv::CAP_PROP_FRAME_WIDTH);
+	this->frameHeight = this->cvVideo->get(cv::CAP_PROP_FRAME_HEIGHT);
+	this->fourcc = this->cvVideo->get(cv::CAP_PROP_FOURCC);
 	SetupFrames();
 }
 
@@ -60,4 +63,16 @@ void Video::Open()
 void Video::Close()
 {
 	this->cvVideo->release();
+}
+
+void Video::Save(string outputPath)
+{
+	cv::VideoWriter videoWriter(outputPath, this->fourcc, this->fps, cv::Size(this->frameWidth, this->frameHeight));
+
+	for (int i = 0; i < nbFrames; i++) {
+		cv::Mat presentFrame = GetFrame(i)->Image();
+		videoWriter.write(presentFrame);
+	}
+
+	videoWriter.release();
 }
