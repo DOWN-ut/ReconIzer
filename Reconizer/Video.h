@@ -4,6 +4,10 @@
 
 using namespace std;
 
+#ifndef VIDEO_H
+#define VIDEO_H
+
+
 class Video
 {
 	private:
@@ -30,6 +34,7 @@ class Video
 		const double FPS() { return this->fps; };
 		const int Length() { return nbFrames; }
 
-		Frame* Frame(int i) { return frames[i]; }
+		Frame* GetFrame(int i) { return frames[i]; }
 };
 
+#endif // VIDEO_H

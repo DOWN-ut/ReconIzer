@@ -3,6 +3,8 @@
 
 using namespace std;
 
+#ifndef FRAME_H
+#define FRAME_H
 class Frame
 {
 protected:
@@ -20,3 +22,4 @@ public:
 	Frame(string name, cv::Mat arr);
 };
 
+#endif
