@@ -4,6 +4,7 @@
 
 class ImageOpperations
 {
+	public:
 	static cv::Mat UnitedColor(int R, int G, int B, const cv::Mat);
 };
 

@@ -5,7 +5,7 @@ cv::Mat ImageOpperations::UnitedColor(int R, int G, int B, const cv::Mat inputIm
     if (inputImage.empty()) 
     {
         std::cout << "Impossible de charger l'image." << std::endl;
-        return;
+        return inputImage;
     }
 
     cv::Mat output = inputImage.clone();

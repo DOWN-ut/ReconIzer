@@ -1,5 +1,6 @@
 #pragma once
 #include "Video.h"
+#include "ImageOpperations.h"
 
 class VideoOperations
 {

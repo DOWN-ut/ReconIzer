@@ -10,9 +10,9 @@ using namespace cv;
 
 void mainYahnis(string path)
 {
-    Video* test = new Video(path + "/Data/BALLS.mp4");
-    test->Display("test");
+    Video* test = new Video(path + "/Data/BALLS.mp4"); 
     VideoOperations::UnitedColor(150, 0, 0, test);
+    test->Display("test");
     cv::waitKey(0);
     cv::destroyAllWindows();
 }
