@@ -11,6 +11,7 @@ protected:
 
 public:
 	cv::Mat Image() { return data; }
+	void SetImage(cv::Mat m) { data = m; }
 
 	void Show() { cv::imshow(name, Image()); }
 
