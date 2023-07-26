@@ -13,16 +13,32 @@ void Video::SetupData()
 {
 	this->fps = this->cvVideo->get(cv::CAP_PROP_FPS);
 	this->nbFrames = this->cvVideo->get(cv::CAP_PROP_FRAME_COUNT);
+	SetupFrames();
+}
+
+void Video::SetupFrames()
+{
+	frames = new Frame*[nbFrames];
+
+	this->Open();
+	
+	cv::Mat arr; int i = 0;
+	while (this->cvVideo->read(arr)) 
+	{
+		Frame* frame = new Frame("", arr.clone());
+		frames[i] = frame; i++;
+	}
+
+	this->Close();
 }
 
 void Video::Display(string windowName)
 {
 	this->Open();
-	cv::Mat arr;
-
-	while (this->cvVideo->read(arr)) {
-		Frame frame = Frame(windowName, arr);
-		frame.Show();
+	
+	for(int i = 0; i < nbFrames; i++)
+	{
+		frames[i]->Show();
 
 		char key = cv::waitKey(1000.0/this->fps);
 		if (key == 27) {

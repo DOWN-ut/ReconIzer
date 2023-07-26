@@ -14,7 +14,7 @@ public:
 
 	void Show() { cv::imshow(name, Image()); }
 
-	Frame(){};
+	Frame();
 	Frame(int frameId, cv::Mat arr);
 	Frame(string name, cv::Mat arr);
 };

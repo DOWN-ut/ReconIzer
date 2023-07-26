@@ -8,12 +8,16 @@ class Video
 {
 	private:
 		cv::VideoCapture* cvVideo;
+
 		int nbFrames;
+		Frame** frames;
+
 		string path;
 		double fps;
 
 	private:
 		void SetupData();
+		void SetupFrames();
 
 	public:
 		Video(string path);
