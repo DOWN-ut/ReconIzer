@@ -10,6 +10,8 @@ protected:
 public:
 	cv::Mat Image() { return data; }
 
+	void Show() { cv::imshow("Current Thumbnail", Image()); }
+
 	Thumbnail(){}
 	Thumbnail(int w, int h);
 	Thumbnail(Frame* f, int w, int h, int x, int y);

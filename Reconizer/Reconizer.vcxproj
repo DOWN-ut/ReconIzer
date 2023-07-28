@@ -145,6 +145,7 @@
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="ImageOpperations.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Thumbnail.cpp" />
     <ClCompile Include="Video.cpp" />
     <ClCompile Include="VideoOperations.cpp" />
   </ItemGroup>
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="Frame.h" />
     <ClInclude Include="ImageOpperations.h" />
+    <ClInclude Include="Thumbnail.h" />
     <ClInclude Include="Video.h" />
     <ClInclude Include="VideoOperations.h" />
   </ItemGroup>
