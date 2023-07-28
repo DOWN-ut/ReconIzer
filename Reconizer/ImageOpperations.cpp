@@ -22,18 +22,30 @@ cv::Mat ImageOpperations::UnitedColor(int R, int G, int B, const cv::Mat inputIm
     return output;
 }
 
-cv::Vec2b ImageOpperations::ThumbnailFrameTracker(Thumbnail* wantedObject, const cv::Mat frameFromVideo)
+cv::Vec3f ImageOpperations::ThumbnailFrameTracker(Thumbnail* wantedObject, const cv::Mat frameFromVideo)
 {
-    float PSNR = 0;
+    cv::Vec3f result = cv::Vec3f(0.0,0.0,0.0);
+
     int verticalSizeThumbnail = wantedObject->Image().rows;
     int horizontalSizeThumbnail = wantedObject->Image().cols;
-    Thumbnail currentZoneChecked = new Thumbnail();
+
+    Thumbnail currentZoneChecked = Thumbnail(frameFromVideo, horizontalSizeThumbnail, verticalSizeThumbnail, 0, 0);
 
     for (int x = 0; x < frameFromVideo.cols - horizontalSizeThumbnail; x++) {
         for (int y = 0; y < frameFromVideo.rows - horizontalSizeThumbnail; y++) {
-            
+            currentZoneChecked.Fill(frameFromVideo, horizontalSizeThumbnail, verticalSizeThumbnail, x, y);
+
+            float currentPSNR = PSNR(wantedObject->Image(), currentZoneChecked.Image());
+
+            if (result[2] < currentPSNR) {
+                result[0] = x; 
+                result[1] = y;
+                result[2] = currentPSNR;
+            }
         }
     }
+
+    return result;
 }
 
 float ImageOpperations::PSNR(const cv::Mat image1, const cv::Mat image2)
