@@ -5,6 +5,7 @@ Thumbnail::Thumbnail(int w, int h)
 	this->data = cv::Mat(w, h,CV_8UC1);
 }
 
+//w : width , h : height , x : position x dans la frame , y : obvi 
 Thumbnail::Thumbnail(Frame* f, int w, int h, int x, int y)
 {
 	this->data = cv::Mat(w, h, f->Image().type());
