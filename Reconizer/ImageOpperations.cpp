@@ -21,3 +21,8 @@ cv::Mat ImageOpperations::UnitedColor(int R, int G, int B, const cv::Mat inputIm
 
     return output;
 }
+
+cv::Vec2b ImageOpperations::ThumbnailFrameTracker(Thumbnail wantedObject, const cv::Mat frameFromVideo)
+{
+    
+}
