@@ -29,5 +29,7 @@ cv::Vec2b ImageOpperations::ThumbnailFrameTracker(Thumbnail wantedObject, const 
 
 float ImageOpperations::PSNR(const cv::Mat image1, const cv::Mat image2)
 {
+    float ntm = 5;
+    int fdp = ntm + 1;
     return 0.0f;
 }
