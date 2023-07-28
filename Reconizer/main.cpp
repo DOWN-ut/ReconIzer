@@ -9,29 +9,36 @@
 
 using namespace cv;
 
+void mainmain(Video* video, string path)
+{
+    //VideoOperations::UnitedColor(150, 0, 0, test);
+
+    cout << "Loaded video" << endl;
+
+    Thumbnail* tn = new Thumbnail(video->GetFrame(0)->Image(), 50, 50, 615, 720 - 519);
+    cout << "Loaded thumbnail from video" << endl;
+    tn->Show();
+
+    cout << "Starting tracking" << endl;
+    VideoOperations::TrackThumbnail(video, tn,0.1f,0.25f);
+
+    video->Display("test");
+    video->Save(path + "/Data/FirstTracking.mp4");
+
+    cv::waitKey(0);
+    cv::destroyAllWindows();
+}
+
 void mainYahnis(string path)
 {
     Video* test = new Video(path + "/Data/BALLS.mp4"); 
-    mainmain(test);
+    mainmain(test, path);
 }
 
 void mainArthur(string path)
 {
     Video* test = new Video(path + "/Data/BALLS.mp4");
-    mainmain(test);
-}
-
-void mainmain(Video* video)
-{
-    //VideoOperations::UnitedColor(150, 0, 0, test);
-
-    Thumbnail* tn = new Thumbnail(video->GetFrame(0)->Image(), 50, 50, 615, 720 - 519);
-    tn->Show();
-
-    video->Display("test");
-
-    cv::waitKey(0);
-    cv::destroyAllWindows();
+    mainmain(test, path);
 }
 
 int main()

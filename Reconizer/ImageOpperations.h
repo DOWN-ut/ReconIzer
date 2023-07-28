@@ -8,8 +8,8 @@ class ImageOpperations
 	public:
 	static cv::Mat UnitedColor(int R, int G, int B, const cv::Mat frameFromVideo);
 
-	static cv::Vec3f ThumbnailFrameTracker(Thumbnail* wantedObject, const cv::Mat frameFromVideo);
+	static cv::Vec3f ThumbnailFrameTracker(Thumbnail* wantedObject, const cv::Mat frameFromVideo, float precision);
 
-	static float PSNR(const cv::Mat image1, const cv::Mat image2);
+	static float PSNR(const cv::Mat image1, const cv::Mat image2, int x, int y);
 };
 

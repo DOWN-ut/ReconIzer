@@ -22,20 +22,18 @@ cv::Mat ImageOpperations::UnitedColor(int R, int G, int B, const cv::Mat inputIm
     return output;
 }
 
-cv::Vec3f ImageOpperations::ThumbnailFrameTracker(Thumbnail* wantedObject, const cv::Mat frameFromVideo)
+cv::Vec3f ImageOpperations::ThumbnailFrameTracker(Thumbnail* wantedObject, const cv::Mat frameFromVideo, float precision)
 {
+    int step = 1 / precision;
     cv::Vec3f result = cv::Vec3f(0.0,0.0,0.0);
 
     int verticalSizeThumbnail = wantedObject->Image().rows;
     int horizontalSizeThumbnail = wantedObject->Image().cols;
 
-    Thumbnail currentZoneChecked = Thumbnail(frameFromVideo, horizontalSizeThumbnail, verticalSizeThumbnail, 0, 0);
+    for (int x = 0; x < frameFromVideo.cols - horizontalSizeThumbnail; x+=step) {
+        for (int y = 0; y < frameFromVideo.rows - verticalSizeThumbnail; y+=step) {
 
-    for (int x = 0; x < frameFromVideo.cols - horizontalSizeThumbnail; x++) {
-        for (int y = 0; y < frameFromVideo.rows - horizontalSizeThumbnail; y++) {
-            currentZoneChecked.Fill(frameFromVideo, horizontalSizeThumbnail, verticalSizeThumbnail, x, y);
-
-            float currentPSNR = PSNR(wantedObject->Image(), currentZoneChecked.Image());
+            float currentPSNR = PSNR(wantedObject->Image(), frameFromVideo,x,y);
 
             if (result[2] < currentPSNR) {
                 result[0] = x; 
@@ -48,9 +46,40 @@ cv::Vec3f ImageOpperations::ThumbnailFrameTracker(Thumbnail* wantedObject, const
     return result;
 }
 
-float ImageOpperations::PSNR(const cv::Mat image1, const cv::Mat image2)
+float ImageOpperations::PSNR(const cv::Mat thumbnail, const cv::Mat frame, int x, int y)
 {
-    cv::Mat diff;
+    double mse = 0.0;
+    int height = thumbnail.rows;
+    int width = thumbnail.cols;
+
+    /*for (int i = 0; i < height * width * 3; i++)
+    {
+        int diff = thumbnail.data[i] - frame.data[i + (y + (x * height) * 3)];
+        mse += diff * diff;
+    }*/
+
+    for (int i = 0; i < height; ++i) 
+    {
+        for (int j = 0; j < width; ++j) 
+        {
+            for (int c = 0; c < 3; ++c) 
+            {
+                int diff = thumbnail.at<cv::Vec3b>(j, i)[c] - frame.at<cv::Vec3b>(j + y, i + x)[c];
+                mse += diff * diff;
+            }
+        }
+    }
+
+    mse /= (3 * height * width);
+
+    if (mse <= 1e-10) {
+        return 100.0; // Return a high value (PSNR is infinity) for identical images
+    }
+    else {
+        double psnr = 10.0 * log10((255 * 255) / mse); // Compute PSNR
+        return psnr;
+    }
+    /*cv::Mat diff;
     cv::absdiff(image1, image2, diff); // Compute absolute difference between images
 
     cv::Mat diffChannels[3];
@@ -70,7 +99,7 @@ float ImageOpperations::PSNR(const cv::Mat image1, const cv::Mat image2)
     else {
         double psnr = 10.0 * log10((255 * 255) / mse); // Compute PSNR
         return psnr;
-    }
+    }*/
 }
 
 
