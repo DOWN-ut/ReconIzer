@@ -14,6 +14,6 @@ public:
 
 	Thumbnail(){}
 	Thumbnail(int w, int h);
-	Thumbnail(Frame* f, int w, int h, int x, int y);
+	Thumbnail(cv::Mat image, int w, int h, int x, int y);
 };
 

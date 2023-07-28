@@ -25,7 +25,7 @@ void mainmain(Video* video)
 {
     //VideoOperations::UnitedColor(150, 0, 0, test);
 
-    Thumbnail* tn = new Thumbnail(video->GetFrame(0), 50, 50, 615, 720 - 519);
+    Thumbnail* tn = new Thumbnail(video->GetFrame(0)->Image(), 50, 50, 615, 720 - 519);
     tn->Show();
 
     video->Display("test");
