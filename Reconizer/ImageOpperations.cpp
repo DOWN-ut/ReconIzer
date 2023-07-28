@@ -27,10 +27,11 @@ cv::Vec2b ImageOpperations::ThumbnailFrameTracker(Thumbnail* wantedObject, const
     float PSNR = 0;
     int verticalSizeThumbnail = wantedObject->Image().rows;
     int horizontalSizeThumbnail = wantedObject->Image().cols;
+    Thumbnail currentZoneChecked = new Thumbnail();
 
-    for (int x = 0; x < frameFromVideo.rows - horizontalSizeThumbnail; x++) {
-        for (int x = 0; x < frameFromVideo - horizontalSizeThumbnail; x++) {
-
+    for (int x = 0; x < frameFromVideo.cols - horizontalSizeThumbnail; x++) {
+        for (int y = 0; y < frameFromVideo.rows - horizontalSizeThumbnail; y++) {
+            
         }
     }
 }
