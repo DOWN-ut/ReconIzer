@@ -22,9 +22,17 @@ cv::Mat ImageOpperations::UnitedColor(int R, int G, int B, const cv::Mat inputIm
     return output;
 }
 
-cv::Vec2b ImageOpperations::ThumbnailFrameTracker(Thumbnail wantedObject, const cv::Mat frameFromVideo)
+cv::Vec2b ImageOpperations::ThumbnailFrameTracker(Thumbnail* wantedObject, const cv::Mat frameFromVideo)
 {
-    float jebasietamereenkalpute;
+    float PSNR = 0;
+    int verticalSizeThumbnail = wantedObject->Image().rows;
+    int horizontalSizeThumbnail = wantedObject->Image().cols;
+
+    for (int x = 0; x < frameFromVideo.rows - horizontalSizeThumbnail; x++) {
+        for (int x = 0; x < frameFromVideo - horizontalSizeThumbnail; x++) {
+
+        }
+    }
 }
 
 float ImageOpperations::PSNR(const cv::Mat image1, const cv::Mat image2)
