@@ -39,11 +39,18 @@ cv::Vec2b ImageOpperations::ThumbnailFrameTracker(Thumbnail* wantedObject, const
 float ImageOpperations::PSNR(const cv::Mat image1, const cv::Mat image2)
 {
     cv::Mat diff;
-    cv::absdiff(image1, image2, diff);
-    diff.convertTo(diff, image1.type());
-    diff = diff.mul(diff);
+    cv::absdiff(image1, image2, diff); // Compute absolute difference between images
 
-    double mse = cv::sum(diff)[0] / (image1.rows * image2.cols * image1.channels()); // Compute mean squared error
+    cv::Mat diffChannels[3];
+    cv::split(diff, diffChannels); // Split the diff image into separate channels
+
+    double mse = 0.0;
+    for (int i = 0; i < 3; ++i) {
+        cv::multiply(diffChannels[i], diffChannels[i], diffChannels[i]); // Square the elements of each channel
+        mse += cv::sum(diffChannels[i])[0]; // Accumulate the squared differences for each channel
+    }
+
+    mse /= (image1.rows * image1.cols * image1.channels()); // Compute mean squared error
 
     if (mse <= 1e-10) {
         return 100.0; // Return a high value (PSNR is infinity) for identical images
