@@ -150,14 +150,14 @@
     <ClCompile Include="VideoOperations.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="..\Data\BALLS.mp4" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Frame.h" />
     <ClInclude Include="ImageOpperations.h" />
     <ClInclude Include="Thumbnail.h" />
     <ClInclude Include="Video.h" />
     <ClInclude Include="VideoOperations.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Data\BALLS.mp4" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -12,21 +12,24 @@ using namespace cv;
 void mainYahnis(string path)
 {
     Video* test = new Video(path + "/Data/BALLS.mp4"); 
-    //VideoOperations::UnitedColor(150, 0, 0, test);
-
-    Thumbnail* tn = new Thumbnail(test->GetFrame(0), 100, 100, 100, 100);
-    tn->Show();
-
-    test->Display("test");
-    cv::waitKey(0);
-    cv::destroyAllWindows();
+    mainmain(test);
 }
 
 void mainArthur(string path)
 {
     Video* test = new Video(path + "/Data/BALLS.mp4");
-    VideoOperations::UnitedColor(150, 0, 0, test);
-    test->Save(path + "/Data/test.mp4");
+    mainmain(test);
+}
+
+void mainmain(Video* video)
+{
+    //VideoOperations::UnitedColor(150, 0, 0, test);
+
+    Thumbnail* tn = new Thumbnail(video->GetFrame(0), 50, 50, 615, 720 - 519);
+    tn->Show();
+
+    video->Display("test");
+
     cv::waitKey(0);
     cv::destroyAllWindows();
 }

@@ -35,11 +35,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="..\Data\BALLS.mp4">
-      <Filter>Resource Files</Filter>
-    </Media>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Frame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -55,5 +50,10 @@
     <ClInclude Include="Thumbnail.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Data\BALLS.mp4">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>
