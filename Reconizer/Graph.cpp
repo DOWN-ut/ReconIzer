@@ -14,7 +14,7 @@ void Graph::Process()
 		for (int j = 0; j < this->data->rows; j++)
 		{
 			currentPixel = data->at<cv::Vec3b>(j, i);
-			int pixelHSLValue = ImageOpperations::ToHSL(currentPixel)[0];
+			this->teintes[(int)ImageOpperations::ToHSL(currentPixel)[0]]++;
 			for (int c = 0; c < 3; c++) {
 				if (max[c] < currentPixel[c]) { max[c] = currentPixel[c]; }
 				if (min[c] > currentPixel[c]) { min[c] = currentPixel[c]; }
