@@ -30,7 +30,7 @@ bool Graph::Compare(Graph* over, int position)
 {
 	for (int i = 0; i < size && position + i < over->size; i++)
 	{
-		for (int c = 0; c < 3; c++) 
+		/*for (int c = 0; c < 3; c++)
 		{
 			if (!(
 				MaxAt(i)[c] <= over->MaxAt(position + i)[c] &&
@@ -38,6 +38,10 @@ bool Graph::Compare(Graph* over, int position)
 			{
 				return false;
 			}
+		}*/
+		for (int c = 0; c < 360; c++)
+		{
+			if (teintes[c] > 0 && over->teintes[c] <= 0) { return false; }
 		}
 	}
 	return true;
