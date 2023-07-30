@@ -10,6 +10,7 @@ Thumbnail::Thumbnail(cv::Mat image, int w, int h, int x, int y)
 {
 	this->data = cv::Mat(w, h, image.type());
 	Fill(image,w,h,x,y);
+	Process();
 }
 
 void Thumbnail::Process()

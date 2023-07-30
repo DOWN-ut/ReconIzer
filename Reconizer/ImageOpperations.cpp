@@ -58,19 +58,19 @@ vector<int> ImageOpperations::ProcessWindows(Frame* frame, Thumbnail* thumbnail)
     return windows;
 }
 
-cv::Vec3f ImageOpperations::ThumbnailFrameTrackerWindows(Thumbnail* wantedObject, const cv::Mat frameFromVideo, float precision)
+cv::Vec3f ImageOpperations::ThumbnailFrameTrackerWindows(Thumbnail* wantedObject, Frame* frame, float precision)
 {
     int step = 1 / precision;
     int verticalSizeThumbnail = wantedObject->Image().rows;
     cv::Vec3f result = cv::Vec3f(0.0, 0.0, 0.0);
 
-    vector<int> windows;
+    vector<int> windows = ProcessWindows(frame,wantedObject);
 
     for (int x : windows)
     {
-        for (int y = 0; y < frameFromVideo.rows - verticalSizeThumbnail; y += step) {
+        for (int y = 0; y < frame->Image().rows - verticalSizeThumbnail; y += step) {
 
-            float currentPSNR = PSNR(wantedObject->Image(), frameFromVideo, x, y);
+            float currentPSNR = PSNR(wantedObject->Image(), frame->Image(), x, y);
 
             if (result[2] < currentPSNR) {
                 result[0] = x;
