@@ -27,7 +27,7 @@ void mainmain(Video* video, string path)
     VideoOperations::TrackThumbnail(video, tn,1.0f,1.0f);
 
     video->Display("test");
-    video->Save(path + "/Data/FirstTracking.mp4");
+    video->Save(path + "/Data/NewTracking.mp4");
 
     cv::waitKey(0);
     cv::destroyAllWindows();
