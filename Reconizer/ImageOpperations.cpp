@@ -50,8 +50,10 @@ vector<int> ImageOpperations::ProcessWindows(Frame* frame, Thumbnail* thumbnail)
 {
     vector<int> windows;
     for (int i = 0; i < frame->Image().cols; i++) {
-        if (frame->GetGraph()->Compare(thumbnail->GetGraph(), i)) {
+        if (thumbnail->GetGraph()->Compare(frame->GetGraph(), i))
+        {
             windows.push_back(i);
+            cout << "Window " << i << "compatible" << endl;
         }
     }
 
