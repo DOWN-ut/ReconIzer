@@ -27,7 +27,7 @@ void mainmain(Video* video, string path)
     VideoOperations::TrackThumbnail(video, tn,1.0f,1.0f);
 
     video->Display("test");
-    video->Save(path + "/Data/FirstTracking.mp4");
+    video->Save(path + "/Data/NewTracking.mp4");
 
     cv::waitKey(0);
     cv::destroyAllWindows();
@@ -47,7 +47,7 @@ void mainArthur(string path)
 
 int main()
 { 
-    mainYahnis("D:/Documents/Projets Dev/ReconIzer");
-    //mainArthur("C:/Users/arthu/Desktop/Code/Reconize/ReconIzer");
+    //mainYahnis("D:/Documents/Projets Dev/ReconIzer");
+    mainArthur("C:/Users/arthu/Desktop/Code/Reconize/ReconIzer");
     return 0;
 }
