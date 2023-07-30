@@ -53,10 +53,10 @@ vector<int> ImageOpperations::ProcessWindows(Frame* frame, Thumbnail* thumbnail)
         if (thumbnail->GetGraph()->Compare(frame->GetGraph(), i))
         {
             windows.push_back(i);
-            cout << "Window " << i << "compatible" << endl;
         }
     }
 
+    cout << windows.size() << " windows compatible over " << frame->Image().cols << endl;
     return windows;
 }
 
@@ -112,7 +112,7 @@ float ImageOpperations::PSNR(const cv::Mat thumbnail, const cv::Mat frame, int x
     mse /= (3 * height * width);
 
     if (mse <= 1e-10) {
-        return 100.0; // Return a high value (PSNR is infinity) for identical images
+        return 1000.0; // Return a high value (PSNR is infinity) for identical images
     }
     else {
         double psnr = 10.0 * log10((255 * 255) / mse); // Compute PSNR
