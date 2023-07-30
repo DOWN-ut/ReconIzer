@@ -22,7 +22,7 @@ cv::Mat ImageOpperations::UnitedColor(int R, int G, int B, const cv::Mat inputIm
     return output;
 }
 
-cv::Vec3f ImageOpperations::ThumbnailFrameTracker(Thumbnail* wantedObject, const cv::Mat frameFromVideo, float precision)
+cv::Vec3f ImageOpperations::ThumbnailFrameTrackerWholeFrame(Thumbnail* wantedObject, const cv::Mat frameFromVideo, float precision)
 {
     int step = 1 / precision;
     cv::Vec3f result = cv::Vec3f(0.0,0.0,0.0);
@@ -37,6 +37,30 @@ cv::Vec3f ImageOpperations::ThumbnailFrameTracker(Thumbnail* wantedObject, const
 
             if (result[2] < currentPSNR) {
                 result[0] = x; 
+                result[1] = y;
+                result[2] = currentPSNR;
+            }
+        }
+    }
+
+    return result;
+}
+
+cv::Vec3f ImageOpperations::ThumbnailFrameTrackerWindows(Thumbnail* wantedObject, const cv::Mat frameFromVideo, float precision)
+{
+    int step = 1 / precision;
+    cv::Vec3f result = cv::Vec3f(0.0, 0.0, 0.0);
+
+    int verticalSizeThumbnail = wantedObject->Image().rows;
+    int horizontalSizeThumbnail = wantedObject->Image().cols;
+
+    for (int x = 0; x < frameFromVideo.cols - horizontalSizeThumbnail; x += step) {
+        for (int y = 0; y < frameFromVideo.rows - verticalSizeThumbnail; y += step) {
+
+            float currentPSNR = PSNR(wantedObject->Image(), frameFromVideo, x, y);
+
+            if (result[2] < currentPSNR) {
+                result[0] = x;
                 result[1] = y;
                 result[2] = currentPSNR;
             }

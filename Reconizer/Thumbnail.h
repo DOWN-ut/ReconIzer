@@ -1,11 +1,15 @@
 #pragma once
 #include <opencv2/opencv.hpp>
 #include "Frame.h"
+#include "Graph.h"
 
 class Thumbnail
 {
 protected:
 	cv::Mat data;
+	Graph* graph;
+
+	void Process();
 
 public:
 	cv::Mat Image() { return data; }

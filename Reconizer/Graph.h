@@ -13,11 +13,11 @@ protected:
 
 	void Process();
 
-	bool Compare(Graph* over, int position);
-
 public:
 	Graph() {  };
 	Graph(cv::Mat* data);
+
+	bool Compare(Graph* over, int position);
 
 	cv::Vec3f MaxAt(int i) { return maxs[i]; }
 	cv::Vec3f MinAt(int i) { return mins[i]; }

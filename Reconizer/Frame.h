@@ -1,5 +1,6 @@
 #pragma once
 #include <opencv2/opencv.hpp>
+#include "Graph.h"
 
 using namespace std;
 
@@ -11,10 +12,13 @@ protected:
 	cv::Mat data;
 	string name;
 
+	Graph* graph;
+
 public:
 	cv::Mat Image() { return data; }
 	void SetImage(cv::Mat m) { data = m; }
 
+	void Process();
 	void Show() { cv::imshow(name, Image()); }
 
 	Frame();

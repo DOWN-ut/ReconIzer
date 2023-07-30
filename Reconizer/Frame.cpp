@@ -1,5 +1,10 @@
 #include "Frame.h"
 
+void Frame::Process()
+{
+	graph = new Graph(&data);
+}
+
 Frame::Frame()
 {
 	this->data = cv::Mat();
