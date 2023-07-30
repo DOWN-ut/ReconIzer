@@ -15,8 +15,8 @@ void mainmain(Video* video, string path)
 
     cout << "Loaded video" << endl;
 
-    //Thumbnail* tn = new Thumbnail(video->GetFrame(0)->Image(), 50, 50, 615, 720 - 519);
-    Thumbnail* tn = new Thumbnail(video->GetFrame(0)->Image(), 215, 215, 0, 720 - 215);
+    Thumbnail* tn = new Thumbnail(video->GetFrame(0)->Image(), 50, 50, 615, 720 - 519);
+    //Thumbnail* tn = new Thumbnail(video->GetFrame(0)->Image(), 215, 215, 0, 720 - 215);
     cout << "Loaded thumbnail from video" << endl;
     tn->Show();
 
@@ -38,7 +38,7 @@ void mainmain(Video* video, string path)
 
 void mainYahnis(string path)
 {
-    Video* test = new Video(path + "/Data/BALLITO.mp4"); 
+    Video* test = new Video(path + "/Data/BALLS.mp4"); 
     mainmain(test, path);
 }
 

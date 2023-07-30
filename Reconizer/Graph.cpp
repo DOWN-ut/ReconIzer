@@ -56,7 +56,7 @@ bool Graph::Compare(Graph* over, int position)
 			}
 		}
 		float r = count / (float)(total);
-		if (r < 0.1f) { return false; }
+		if (r < 0.2f) { return false; }
 	}
 	return true;
 }
