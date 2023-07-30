@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Frame.cpp" />
+    <ClCompile Include="Graph.cpp" />
     <ClCompile Include="ImageOpperations.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Thumbnail.cpp" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Frame.h" />
+    <ClInclude Include="Graph.h" />
     <ClInclude Include="ImageOpperations.h" />
     <ClInclude Include="Thumbnail.h" />
     <ClInclude Include="Video.h" />

@@ -46,6 +46,14 @@ cv::Vec3f ImageOpperations::ThumbnailFrameTrackerWholeFrame(Thumbnail* wantedObj
     return result;
 }
 
+vector<int> ImageOpperations::ProcessWidnows(Frame* frame, Thumbnail* thumbnail)
+{
+    vector<int> windows;
+    for (int i = 0; i < frame->Image().cols; i++) {
+
+    }
+}
+
 cv::Vec3f ImageOpperations::ThumbnailFrameTrackerWindows(Thumbnail* wantedObject, const cv::Mat frameFromVideo, float precision)
 {
     int step = 1 / precision;
