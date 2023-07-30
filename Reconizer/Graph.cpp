@@ -8,7 +8,7 @@ void Graph::Process()
 
 	for (int i = 0; i < this->data->cols; i++) {
 		max = cv::Vec3f(0, 0, 0);
-		min = cv::Vec3f(0, 0, 0);
+		min = cv::Vec3f(1000, 1000, 1000);
 
 		for (int j = 0; j < this->data->rows; j++)
 		{
