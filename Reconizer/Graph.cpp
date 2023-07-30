@@ -14,8 +14,12 @@ void Graph::Process()
 		for (int j = 0; j < this->data->rows; j++)
 		{
 			currentPixel = data->at<cv::Vec3b>(j, i);
+			currentPixel = ImageOpperations::ToHSL(currentPixel);
 
-			this->teintes[i][(int)ImageOpperations::ToHSL(currentPixel)[0]]++;
+			if (currentPixel[1] > 0.2f) {
+
+				this->teintes[i][(int)currentPixel[0]]++;
+			}
 
 			for (int c = 0; c < 3; c++) 
 			{

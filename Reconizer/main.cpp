@@ -20,7 +20,7 @@ void mainmain(Video* video, string path)
     cout << "Loaded thumbnail from video" << endl;
     tn->Show();
 
-    //tn->GetGraph()->Display(); return;
+    tn->GetGraph()->Display(); return;
 
     cout << "Video pre-processing" << endl;
     video->ProcessFrames(true);
@@ -50,7 +50,7 @@ void mainArthur(string path)
 
 int main()
 { 
-    //mainYahnis("D:/Documents/Projets Dev/ReconIzer");
-    mainArthur("C:/Users/arthu/Desktop/Code/Reconize/ReconIzer");
+    mainYahnis("D:/Documents/Projets Dev/ReconIzer");
+    //mainArthur("C:/Users/arthu/Desktop/Code/Reconize/ReconIzer");
     return 0;
 }
