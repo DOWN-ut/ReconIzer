@@ -1,5 +1,8 @@
 #pragma once
 #include <opencv2/opencv.hpp>
+#include <iostream>
+
+using namespace std;
 
 class Graph
 {
@@ -18,6 +21,8 @@ public:
 	Graph(cv::Mat* data);
 
 	bool Compare(Graph* over, int position);
+
+	void Display();
 
 	cv::Vec3f MaxAt(int i) { return maxs[i]; }
 	cv::Vec3f MinAt(int i) { return mins[i]; }
