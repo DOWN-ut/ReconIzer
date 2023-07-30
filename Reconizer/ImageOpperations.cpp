@@ -53,10 +53,10 @@ vector<int> ImageOpperations::ProcessWindows(Frame* frame, Thumbnail* thumbnail)
         if (thumbnail->GetGraph()->Compare(frame->GetGraph(), i))
         {
             windows.push_back(i);
-            cout << "Window " << i << "compatible" << endl;
         }
     }
 
+    cout << windows.size() << " windows compatible over " << frame->Image().cols << endl;
     return windows;
 }
 
@@ -83,6 +83,47 @@ cv::Vec3f ImageOpperations::ThumbnailFrameTrackerWindows(Thumbnail* wantedObject
     }
 
     return result;
+}
+
+cv::Vec3f ImageOpperations::ToHSL(cv::Vec3f rgb)
+{
+    // Convert RGB values to the range [0, 1]
+    double red = static_cast<double>(rgb[2]) / 255.0;
+    double green = static_cast<double>(rgb[1]) / 255.0;
+    double blue = static_cast<double>(rgb[0]) / 255.0;
+
+    // Find the maximum and minimum RGB components
+    double maxComponent = std::max({ red, green, blue });
+    double minComponent = std::min({ red, green, blue });
+
+    // Calculate lightness (L)
+    double l = (maxComponent + minComponent) / 2.0;
+    double h, s;
+
+    if (maxComponent == minComponent) {
+        // Grayscale color (no saturation)
+        h = 0.0;
+        s = 0.0;
+    }
+    else {
+        // Calculate saturation (S)
+        double d = maxComponent - minComponent;
+        s = l > 0.5 ? d / (2.0 - maxComponent - minComponent) : d / (maxComponent + minComponent);
+
+        // Calculate hue (H)
+        if (maxComponent == red) {
+            h = (green - blue) / d + (green < blue ? 6.0 : 0.0);
+        }
+        else if (maxComponent == green) {
+            h = (blue - red) / d + 2.0;
+        }
+        else { // maxComponent == blue
+            h = (red - green) / d + 4.0;
+        }
+        h *= 60.0; // Convert to degrees
+    }
+
+    return cv::Vec3f(h, s, l);
 }
 
 float ImageOpperations::PSNR(const cv::Mat thumbnail, const cv::Mat frame, int x, int y)
@@ -112,7 +153,7 @@ float ImageOpperations::PSNR(const cv::Mat thumbnail, const cv::Mat frame, int x
     mse /= (3 * height * width);
 
     if (mse <= 1e-10) {
-        return 100.0; // Return a high value (PSNR is infinity) for identical images
+        return 1000.0; // Return a high value (PSNR is infinity) for identical images
     }
     else {
         double psnr = 10.0 * log10((255 * 255) / mse); // Compute PSNR

@@ -8,7 +8,8 @@ void VideoOperations::UnitedColor(int R, int G, int B, Video* video)
 	}
 }
 
-void VideoOperations::TrackThumbnail(Video* video, Thumbnail* thumbnail, float framePrecision, float imagePrecision)
+
+void VideoOperations::TrackThumbnail(Video* video, Thumbnail* thumbnail, float framePrecision, float imagePrecision, string method)
 {
 	int step = 1 / framePrecision;
 
@@ -21,8 +22,8 @@ void VideoOperations::TrackThumbnail(Video* video, Thumbnail* thumbnail, float f
 		
 		if (i % step == 0)
 		{
-			//detectedPosition = ImageOpperations::ThumbnailFrameTrackerWholeFrame(thumbnail, frame->Image(), imagePrecision);
-			detectedPosition = ImageOpperations::ThumbnailFrameTrackerWindows(thumbnail, frame, imagePrecision);
+			if(method == "whole") detectedPosition = ImageOpperations::ThumbnailFrameTrackerWholeFrame(thumbnail, frame->Image(), imagePrecision);
+			else if (method == "window") detectedPosition = ImageOpperations::ThumbnailFrameTrackerWindows(thumbnail, frame, imagePrecision);
 			positions.push_back(detectedPosition);
 
 			cout << "Detected at : (" << detectedPosition[0] << "," << detectedPosition[1] << ")"
