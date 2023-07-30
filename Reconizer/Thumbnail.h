@@ -13,6 +13,7 @@ protected:
 
 public:
 	cv::Mat Image() { return data; }
+	Graph* GetGraph() { return graph; }
 
 	void Show() { cv::imshow("Current Thumbnail", Image()); }
 

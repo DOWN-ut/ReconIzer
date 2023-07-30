@@ -17,6 +17,7 @@ protected:
 public:
 	cv::Mat Image() { return data; }
 	void SetImage(cv::Mat m) { data = m; }
+	Graph* GetGraph() { return graph; }
 
 	void Process();
 	void Show() { cv::imshow(name, Image()); }
