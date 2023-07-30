@@ -65,6 +65,15 @@ void Video::Close()
 	this->cvVideo->release();
 }
 
+void Video::ProcessFrames(bool debug)
+{
+	for (int i = 0; i < nbFrames; i++)
+	{
+		if (debug) { cout << "Processing frame " << i << endl; }
+		frames[i]->Process();
+	}
+}
+
 void Video::Save(string outputPath)
 {
 	cv::VideoWriter videoWriter(outputPath, this->fourcc, this->fps, cv::Size(this->frameWidth, this->frameHeight));

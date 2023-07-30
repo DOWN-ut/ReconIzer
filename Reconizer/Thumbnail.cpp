@@ -12,6 +12,11 @@ Thumbnail::Thumbnail(cv::Mat image, int w, int h, int x, int y)
 	Fill(image,w,h,x,y);
 }
 
+void Thumbnail::Process()
+{
+	graph = new Graph(&data);
+}
+
 void Thumbnail::Fill(cv::Mat image, int w, int h, int x, int y)
 {
 	for (int dx = x; dx < x + w && dx < image.cols; dx++)

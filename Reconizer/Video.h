@@ -34,6 +34,7 @@ class Video
 
 		void Open();
 		void Close();
+		void ProcessFrames(bool debug = false);
 
 		const double FPS() { return this->fps; };
 		const int Length() { return nbFrames; }

@@ -19,6 +19,9 @@ void mainmain(Video* video, string path)
     cout << "Loaded thumbnail from video" << endl;
     tn->Show();
 
+    cout << "Video pre-processing" << endl;
+    video->ProcessFrames(true);
+
     cout << "Starting tracking" << endl;
     VideoOperations::TrackThumbnail(video, tn,0.1f,0.25f);
 
