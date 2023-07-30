@@ -7,8 +7,8 @@ void Graph::Process()
 	cv::Vec3f currentPixel;
 
 	for (int i = 0; i < this->data->cols; i++) {
-		cv::Vec3f max = cv::Vec3f(0, 0, 0);
-		cv::Vec3f min = cv::Vec3f(0, 0, 0);
+		max = cv::Vec3f(0, 0, 0);
+		min = cv::Vec3f(0, 0, 0);
 
 		for (int j = 0; j < this->data->rows; j++)
 		{
