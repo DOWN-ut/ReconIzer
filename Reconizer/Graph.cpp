@@ -14,5 +14,7 @@ bool Graph::Compare(Graph* over)
 
 Graph::Graph(cv::Mat* data)
 {
-
+	this->size = data->cols;
+	this->mins = new float[size];
+	this->maxs = new float[size];
 }
