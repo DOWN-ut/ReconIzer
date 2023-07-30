@@ -12,7 +12,7 @@ class ImageOpperations
 	static cv::Vec3f ThumbnailFrameTrackerWholeFrame(Thumbnail* wantedObject, const cv::Mat frameFromVideo, float precision);
 	static cv::Vec3f ThumbnailFrameTrackerWindows(Thumbnail* wantedObject, Frame* frame, float precision);
 
-	static cv::Vec3f ToHSL(cv::Vec3f rgb);
+	static cv::Vec3f ToHSL(cv::Vec3b rgb);
 
 	static float PSNR(const cv::Mat image1, const cv::Mat image2, int x, int y);
 };

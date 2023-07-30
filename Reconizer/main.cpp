@@ -20,12 +20,14 @@ void mainmain(Video* video, string path)
     cout << "Loaded thumbnail from video" << endl;
     tn->Show();
 
+    //tn->GetGraph()->Display(); return;
+
     cout << "Video pre-processing" << endl;
     video->ProcessFrames(true);
 
     cout << "Starting tracking" << endl;
     //VideoOperations::TrackThumbnailWholeFrame(video, tn,0.1f,0.25f);
-    VideoOperations::TrackThumbnailWindow(video, tn,1.0f,1.0f);
+    VideoOperations::TrackThumbnailWindow(video, tn,0.1f,1.0f);
 
     video->Display("test");
     video->Save(path + "/Data/NewTracking.mp4");
@@ -48,7 +50,7 @@ void mainArthur(string path)
 
 int main()
 { 
-    //mainYahnis("D:/Documents/Projets Dev/ReconIzer");
-    mainArthur("C:/Users/arthu/Desktop/Code/Reconize/ReconIzer");
+    mainYahnis("D:/Documents/Projets Dev/ReconIzer");
+    //mainArthur("C:/Users/arthu/Desktop/Code/Reconize/ReconIzer");
     return 0;
 }

@@ -14,8 +14,11 @@ void Graph::Process()
 		for (int j = 0; j < this->data->rows; j++)
 		{
 			currentPixel = data->at<cv::Vec3b>(j, i);
-			this->teintes[(int)ImageOpperations::ToHSL(currentPixel)[0]]++;
-			for (int c = 0; c < 3; c++) {
+
+			this->teintes[i][(int)ImageOpperations::ToHSL(currentPixel)[0]]++;
+
+			for (int c = 0; c < 3; c++) 
+			{
 				if (max[c] < currentPixel[c]) { max[c] = currentPixel[c]; }
 				if (min[c] > currentPixel[c]) { min[c] = currentPixel[c]; }
 			}
@@ -39,10 +42,21 @@ bool Graph::Compare(Graph* over, int position)
 				return false;
 			}
 		}*/
+		int count = 0; int total = 0;
 		for (int c = 0; c < 360; c++)
 		{
-			if (teintes[c] > 0 && over->teintes[c] <= 0) { return false; }
+			//if (teintes[i][c] > 0 && over->teintes[position+i][c] <= 0) { return false; }
+			if (teintes[i][c] > 0) 
+			{ 
+				total++; 
+				if (over->teintes[position + i][c] > 0)
+				{
+					count++;
+				}
+			}
 		}
+		float r = count / (float)(total);
+		if (r < 0.1f) { return false; }
 	}
 	return true;
 }
@@ -51,7 +65,12 @@ void Graph::Display()
 {
 	for (int i = 0; i < size; i++)
 	{
-		cout << MaxAt(i)[0] << "-" << MinAt(i)[0] << endl;
+		//cout << MaxAt(i)[0] << "-" << MinAt(i)[0] << endl;
+		for (int c = 0; c < 360; c++)
+		{
+			if (teintes[i][c] > 0) { cout << c << " "; }
+		}
+		cout << endl;
 	}
 }
 
@@ -61,5 +80,7 @@ Graph::Graph(cv::Mat* data)
 	this->size = data->cols;
 	this->mins = new cv::Vec3f[size];
 	this->maxs = new cv::Vec3f[size];
+	this->teintes = new int*[size];
+	for (int i = 0; i < size; i++) { this->teintes[i] = new int[360]; for (int c = 0; c < 360; c++) { this->teintes[i][c] = 0; } }
 	this->Process();
 }

@@ -10,7 +10,7 @@ protected:
 	cv::Vec3f* maxs;
 	cv::Vec3f* mins;
 	cv::Vec3f* averages;
-	int teintes[360];
+	int** teintes;
 
 	int size;
 	cv::Mat* data;

@@ -57,6 +57,7 @@ vector<int> ImageOpperations::ProcessWindows(Frame* frame, Thumbnail* thumbnail)
     }
 
     cout << windows.size() << " windows compatible over " << frame->Image().cols << endl;
+    //cout << "  > "; for (int i : windows) { cout << i << " "; } cout << endl;
     return windows;
 }
 
@@ -85,7 +86,7 @@ cv::Vec3f ImageOpperations::ThumbnailFrameTrackerWindows(Thumbnail* wantedObject
     return result;
 }
 
-cv::Vec3f ImageOpperations::ToHSL(cv::Vec3f rgb)
+cv::Vec3f ImageOpperations::ToHSL(cv::Vec3b rgb)
 {
     // Convert RGB values to the range [0, 1]
     double red = static_cast<double>(rgb[2]) / 255.0;
