@@ -21,7 +21,8 @@ void VideoOperations::TrackThumbnail(Video* video, Thumbnail* thumbnail, float f
 		
 		if (i % step == 0)
 		{
-			detectedPosition = ImageOpperations::ThumbnailFrameTrackerWholeFrame(thumbnail, frame->Image(), imagePrecision);
+			//detectedPosition = ImageOpperations::ThumbnailFrameTrackerWholeFrame(thumbnail, frame->Image(), imagePrecision);
+			detectedPosition = ImageOpperations::ThumbnailFrameTrackerWindows(thumbnail, frame->Image(), imagePrecision);
 			positions.push_back(detectedPosition);
 
 			cout << "Detected at : (" << detectedPosition[0] << "," << detectedPosition[1] << ")"
