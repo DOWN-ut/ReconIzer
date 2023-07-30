@@ -1,4 +1,5 @@
 #include "Graph.h"
+#include "ImageOpperations.h"
 
 void Graph::Process()
 {
@@ -9,10 +10,11 @@ void Graph::Process()
 	for (int i = 0; i < this->data->cols; i++) {
 		max = cv::Vec3f(0, 0, 0);
 		min = cv::Vec3f(1000, 1000, 1000);
-
+		
 		for (int j = 0; j < this->data->rows; j++)
 		{
 			currentPixel = data->at<cv::Vec3b>(j, i);
+			int pixelHSLValue = ImageOpperations::ToHSL(currentPixel)[0];
 			for (int c = 0; c < 3; c++) {
 				if (max[c] < currentPixel[c]) { max[c] = currentPixel[c]; }
 				if (min[c] > currentPixel[c]) { min[c] = currentPixel[c]; }
