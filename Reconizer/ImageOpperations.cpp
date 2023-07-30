@@ -46,12 +46,16 @@ cv::Vec3f ImageOpperations::ThumbnailFrameTrackerWholeFrame(Thumbnail* wantedObj
     return result;
 }
 
-vector<int> ImageOpperations::ProcessWidnows(Frame* frame, Thumbnail* thumbnail)
+vector<int> ImageOpperations::ProcessWindows(Frame* frame, Thumbnail* thumbnail)
 {
     vector<int> windows;
     for (int i = 0; i < frame->Image().cols; i++) {
-
+        if (frame->GetGraph()->Compare(thumbnail->GetGraph(), i)) {
+            windows.push_back(i);
+        }
     }
+
+    return windows;
 }
 
 cv::Vec3f ImageOpperations::ThumbnailFrameTrackerWindows(Thumbnail* wantedObject, Frame* frame, float precision)
