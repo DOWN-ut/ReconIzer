@@ -41,6 +41,14 @@ bool Graph::Compare(Graph* over, int position)
 	return true;
 }
 
+void Graph::Display()
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << MaxAt(i)[0] << "-" << MinAt(i)[0] << endl;
+	}
+}
+
 Graph::Graph(cv::Mat* data)
 {
 	this->data = data;
