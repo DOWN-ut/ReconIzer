@@ -123,7 +123,7 @@ cv::Vec3f ImageOpperations::ToHSL(cv::Vec3f rgb)
         h *= 60.0; // Convert to degrees
     }
 
-    return cv::Vec3f(h/360.0f, s/100.0f, l/100.0f);
+    return cv::Vec3f(h, s, l);
 }
 
 float ImageOpperations::PSNR(const cv::Mat thumbnail, const cv::Mat frame, int x, int y)
